@@ -1,8 +1,9 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'docker'
+require 'shellwords'
 
-repo = ARGV[0]
+repo = Shellwords.escape(ARGV[0])
 repo_name = repo.split('/').last
 Excon.defaults[:ssl_verify_peer] = false
 Docker.options = {chunk_size: 1}
